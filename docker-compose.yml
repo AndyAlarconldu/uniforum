@@ -1,0 +1,136 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: uniforum_db
+    restart: always
+    environment:
+      POSTGRES_DB: uniforum
+      POSTGRES_USER: uniforum_user
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - uniforum_net
+
+  registro-usuarios:
+    build: ./springboot-services/registro-usuarios-correcto
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    networks:
+      - uniforum_net
+
+  auth-service:
+    build: ./springboot-services/auth-service-final
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
+    networks:
+      - uniforum_net
+
+  authorization-service:
+    build: ./springboot-services/authorization-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - auth-service
+    networks:
+      - uniforum_net
+
+  perfil-service:
+    build: ./fastapi-services/perfil-service
+    ports:
+      - "8000:8000"
+    networks:
+      - uniforum_net
+
+  notification-service:
+    build: ./fastapi-services/notification-service
+    ports:
+      - "8001:8001"
+    networks:
+      - uniforum_net
+
+  password-service:
+    build: ./fastapi-services/password-service
+    ports:
+      - "8002:8002"
+    networks:
+      - uniforum_net
+
+  discussion-service:
+    build: ./fastapi-services/discussion-service
+    ports:
+      - "8003:8003"
+    networks:
+      - uniforum_net
+
+  reply-service:
+    build: ./fastapi-services/reply-service
+    ports:
+      - "8004:8004"
+    networks:
+      - uniforum_net
+
+  moderation-service:
+    build: ./fastapi-services/moderation-service
+    ports:
+      - "8005:8005"
+    networks:
+      - uniforum_net
+
+  voting-service:
+    build: ./fastapi-services/voting-service
+    ports:
+      - "8006:8006"
+    networks:
+      - uniforum_net
+
+  tagging-service:
+    build: ./fastapi-services/tagging-service
+    ports:
+      - "8007:8007"
+    networks:
+      - uniforum_net
+
+  history-service:
+    build: ./fastapi-services/history-service
+    ports:
+      - "8008:8008"
+    networks:
+      - uniforum_net
+
+  course-service:
+    build: ./fastapi-services/course-service
+    ports:
+      - "8009:8009"
+    networks:
+      - uniforum_net
+
+  enrollment-service:
+    build: ./fastapi-services/enrollment-service
+    ports:
+      - "8010:8010"
+    networks:
+      - uniforum_net
+
+  course-forum-link-service:
+    build: ./node-services/course-forum-link-service
+    ports:
+      - "8011:8011"
+    networks:
+      - uniforum_net
+
+volumes:
+  postgres_data:
+
+networks:
+  uniforum_net:
+    driver: bridge

@@ -1,0 +1,23 @@
+# IntelliJ / VS Code
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Node.js
+node_modules/
+
+# Java
+target/
+*.class
+*.log
+
+# Docker
+*.pid
+.env
+
+# MacOS
+.DS_Store
