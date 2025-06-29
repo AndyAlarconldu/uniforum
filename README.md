@@ -9,6 +9,7 @@ How to start everything with Docker
 1.	Make sure you have Docker and Docker Compose installed.
 2.	Place the source code for each microservice in its corresponding folder.
 3.	Run the following command:
+
     docker-compose up --build
 
 
