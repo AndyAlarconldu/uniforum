@@ -1,24 +1,25 @@
-UniForum - Course Microservice
-This microservice is part of the UniForum system and is built with FastAPI. It handles the management of university courses.
+📘 UniForum - Course Service
+This microservice manages the course information available in the UniForum platform. It's built using Python and FastAPI.
 
-📁 Structure
-crud.py: Functions to create and retrieve courses from the database.
+🧱 Project Structure
+course-service/
+├── app/
+│   ├── crud.py          # CRUD operations using SQLAlchemy
+│   ├── database.py      # Database connection settings
+│   ├── main.py          # FastAPI app entry point
+│   ├── models.py        # Course model
+│   ├── routes.py        # API routes for course handling
+│   └── schemas.py       # Input/output schemas using Pydantic
+├── Dockerfile           # Docker image for this microservice
+└── requirements.txt     # Python dependencies
 
-database.py: Sets up the PostgreSQL connection using SQLAlchemy.
+🔄 Main Features
+Create a new course (POST /courses)
 
-main.py: Entry point of the service. Initializes the app.
+Get all courses (GET /courses)
 
-models.py: Defines the course table model.
+Get courses by university (GET /courses/university/{university_id})
 
-routes.py: Defines endpoints for creating and fetching courses.
-
-schemas.py: Pydantic schemas for input and output.
-
-Dockerfile: Docker image for containerization.
-
-requirements.txt: Python dependencies list.
-
-How to run
-docker-compose up --build
-
-The service will be available on port 8009
+🐳 How to Run with Docker
+docker build -t course-service .
+docker run -p 8009:8009 course-service
