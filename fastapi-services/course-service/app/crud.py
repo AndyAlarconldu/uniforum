@@ -14,7 +14,8 @@ def create_course(db: Session, course: CourseCreate):
     return new_course
 
 def get_all_courses(db: Session):
-    return db.query(Course).all()
+    return db.query(Course).order_by(Course.name.asc()).all()
+
 
 def get_courses_by_university(db: Session, university_id: str):
     return db.query(Course).filter_by(university_id=university_id).all()
