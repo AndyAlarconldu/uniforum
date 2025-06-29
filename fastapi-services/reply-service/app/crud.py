@@ -10,4 +10,4 @@ def create_comment(db: Session, data: CommentCreate):
     return comment
 
 def get_comments_by_post(db: Session, post_id: str):
-    return db.query(Comment).filter(Comment.post_id == post_id).order_by(Comment.comment_date.asc()).all()
+    return db.query(Comment).filter(Comment.post_id == post_id).order_by(Comment.comment_date.desc()).all()
