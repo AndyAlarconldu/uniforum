@@ -6,6 +6,8 @@ def create_comment(db: Session, data: CommentCreate):
     comment = Comment(**data.dict())
     db.add(comment)
     db.commit()
+    print(f"✅ Comentario creado: ID={comment.id_comment}, Post={comment.post_id}")
+
     db.refresh(comment)
     return comment
 
