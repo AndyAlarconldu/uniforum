@@ -1,40 +1,56 @@
-# UniForum Backend (Microservicios)
+## UniForum Backend (Microservices)
 
-Este repositorio contiene los 15 microservicios distribuidos en:
+This repository contains 15 microservices distributed as follows:
+•	Spring Boot (Java): 3 microservices
+•	FastAPI (Python): 11 microservices
+•	Node.js (Express): 1 microservice
 
-- **Spring Boot (Java)**: 3 microservicios
-- **FastAPI (Python)**: 11 microservicios
-- **Node.js (Express)**: 1 microservicio
+How to start everything with Docker
+1.	Make sure you have Docker and Docker Compose installed.
+2.	Place the source code for each microservice in its corresponding folder.
+3.	Run the following command:
+    docker-compose up --build
 
-## Cómo iniciar todo con Docker
 
-1. Asegúrate de tener Docker y Docker Compose instalados.
-2. Coloca el código fuente de cada microservicio en su carpeta correspondiente.
-3. Ejecuta el siguiente comando:
+## Services 
 
-```bash
-docker-compose up --build
-```
+•Database: PostgreSQL (5432)
+•Microservices: Exposed from port 8001 to 8011, and from 8081 to 8083.
 
-## Servicios
 
-- **Base de datos**: PostgreSQL (`5432`)
-- **Microservicios**: Se exponen desde el puerto `8001` al `8011`, y `8081` a `8083`.
+## Organization
 
-## Organización
 
-```
-uniforum-backend/
+UNIFORUM
+├── fastapi-services
+│   ├── course-service
+│   ├── discussion-service
+│   ├── enrollment-service
+│   ├── history-service
+│   ├── moderation-service
+│   ├── notification-service
+│   ├── password-service
+│   ├── perfil-service
+│   ├── reply-service
+│   ├── tagging-service
+│   └── voting-service
+├── init
+│   └── init.sql
+├── node-services
+│   └── course-forum-link-service
+│       ├── config
+│       ├── controllers
+│       ├── models
+│       ├── routes
+│       ├── Dockerfile
+│       ├── index.js
+│       ├── package-lock.json
+│       └── package.json
+├── springboot-services
+│   ├── auth-service-final
+│   ├── authorization-service
+│   └── registro-usuarios-correcto
+├── .gitignore
 ├── docker-compose.yml
 ├── README.md
-├── springboot-services/
-│   ├── registro-usuarios/
-│   ├── auth-service/
-│   └── authorization-service/
-├── fastapi-services/
-│   ├── perfil-service/
-│   ├── ...
-│   └── enrollment-service/
-└── node-services/
-    └── course-forum-link-service/
-```
+└── UniForum.docx
