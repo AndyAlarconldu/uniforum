@@ -1,5 +1,5 @@
  Perfil Service
-🇺🇸 English
+
 This microservice is responsible for retrieving the authenticated student's profile in the UniForum platform. It verifies the user using a JWT token and fetches the student data along with their associated university information from the database.
 
 Authentication is enforced using OAuth2 and JWT for secure access.
